@@ -1,0 +1,1 @@
+dotnet publish src/KurthosWoW.TestRealm.DeployementService/KurthosWoW.TestRealm.DeployementService.csproj -c Release -r win10-x64
