@@ -1,2 +1,7 @@
+build: off
+
+build_script:
+ - build.bat
+
 artifacts:
-- path: kurthoswow.deploymentservice.zip
+ - path: kurthoswow.deploymentservice.zip
