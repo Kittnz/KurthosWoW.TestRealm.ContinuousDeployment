@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace KurthosWoW
 {
@@ -11,6 +13,16 @@ namespace KurthosWoW
 	[ApiController]
 	public class PushController : ControllerBase
 	{
+		private ILogger<PushController> Logger { get; }
+
+		/// <inheritdoc />
+		public PushController([FromServices] ILogger<PushController> logger)
+		{
+			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
+		}
+
+		
+
 		[HttpGet]
 		public string Get()
 		{
@@ -20,16 +32,27 @@ namespace KurthosWoW
 		[HttpPost]
 		public async Task<IActionResult> OnRecievedGithubPushEvent([FromBody] GithubWebhookPushEvent pushEvent)
 		{
-			if(ModelState.IsValid)
-				return BadRequest();
+			//TODO: Setup ASP Logging
+			try
+			{
+				if(!ModelState.IsValid)
+					return BadRequest();
 
-			//TODO: We can do some logging or maybe even send some information to a Discord bot.
-			//We just directly invoke the batch file that is responsible for handling compilation/git and such.
-			//We assume it's in the current directory and that it's named push.bat
-			Process.Start("push.bat");
+				//TODO: We can do some logging or maybe even send some information to a Discord bot.
+				//We just directly invoke the batch file that is responsible for handling compilation/git and such.
+				//We assume it's in the current directory and that it's named push.bat
+				ProcessStartInfo pInfo = new ProcessStartInfo("cmd.exe", $"/c {Path.Combine(Directory.GetCurrentDirectory(), "push.bat")}");
+				Process.Start(pInfo);
 
-			//We don't wait because github probably expects a quick OK
-			return Ok();
+				//We don't wait because github probably expects a quick OK
+				return Ok();
+			}
+			catch(Exception e)
+			{
+				string error = $"Failed: {e.Message} \n\n {e.StackTrace}";
+				Logger.LogError(error);
+				return BadRequest(error);
+			}
 		}
 	}
 }
