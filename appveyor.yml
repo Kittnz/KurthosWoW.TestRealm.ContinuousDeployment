@@ -4,7 +4,7 @@ build_script:
  - build.bat
 
 deploy:
- - provider: GitHub
-   artifacts: kurthoswow.deploymentservice.zip
-   auth_token:
-    secure: cwM9w4U0/8Qwdyebngt291pNhcrL4c1YasofyKKiLDzCPrELiYo1E+D3Dgeu27BW
+ provider: GitHub
+ artifact: kurthoswow.deploymentservice.zip
+ auth_token:
+  secure: cwM9w4U0/8Qwdyebngt291pNhcrL4c1YasofyKKiLDzCPrELiYo1E+D3Dgeu27BW
