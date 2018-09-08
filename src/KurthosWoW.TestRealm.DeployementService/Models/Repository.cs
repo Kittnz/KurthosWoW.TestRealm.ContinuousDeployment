@@ -144,14 +144,15 @@ namespace KurthosWoW
 		[JsonProperty("deployments_url")]
 		public Uri DeploymentsUrl { get; set; }
 
+		//TODO: Should these be DateTime's or DateTimeOffsets?
 		[JsonProperty("created_at")]
-		public long CreatedAt { get; set; }
+		public DateTimeOffset CreatedAt { get; set; }
 
 		[JsonProperty("updated_at")]
 		public DateTimeOffset UpdatedAt { get; set; }
 
 		[JsonProperty("pushed_at")]
-		public long PushedAt { get; set; }
+		public DateTimeOffset PushedAt { get; set; }
 
 		[JsonProperty("git_url")]
 		public string GitUrl { get; set; }
