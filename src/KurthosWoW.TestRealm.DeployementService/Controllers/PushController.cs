@@ -32,11 +32,17 @@ namespace KurthosWoW
 		[HttpPost]
 		public async Task<IActionResult> OnRecievedGithubPushEvent([FromBody] GithubWebhookPushEvent pushEvent)
 		{
+			if(!ModelState.IsValid)
+				return BadRequest();
+
+			//We only want to deploy on staging branch pushes.
+			if(!pushEvent.Ref.ToLower().Contains("staging"))
+				return Ok();
+
 			//TODO: Setup ASP Logging
 			try
 			{
-				if(!ModelState.IsValid)
-					return BadRequest();
+				
 
 				//TODO: We can do some logging or maybe even send some information to a Discord bot.
 				//We just directly invoke the batch file that is responsible for handling compilation/git and such.

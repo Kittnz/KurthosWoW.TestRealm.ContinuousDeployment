@@ -6,7 +6,8 @@ namespace KurthosWoW
 	//From Quicktype.io
 	public partial class GithubWebhookPushEvent
 	{
-		[JsonProperty("ref")]
+		//TODO: Revert this when the model works properly.
+		/*[JsonProperty("ref")]
 		public string Ref { get; set; }
 
 		[JsonProperty("before")]
@@ -43,6 +44,6 @@ namespace KurthosWoW
 		public Pusher Pusher { get; set; }
 
 		[JsonProperty("sender")]
-		public Sender Sender { get; set; }
+		public Sender Sender { get; set; }*/
 	}
 }
