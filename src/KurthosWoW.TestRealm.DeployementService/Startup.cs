@@ -24,6 +24,9 @@ namespace KurthosWoW
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			
+			//TODO: Make this configurable
+			services.AddSingleton<DeployedProcessManager>(new DeployedProcessManager(@"C:\Users\Administrator\Documents\GitHub\KurthosWoW.Trinitycore\build\bin\Release\worldserver.exe"));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

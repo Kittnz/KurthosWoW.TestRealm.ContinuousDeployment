@@ -4,13 +4,14 @@ using Newtonsoft.Json;
 namespace KurthosWoW
 {
 	//From Quicktype.io
+	[JsonObject]
 	public partial class GithubWebhookPushEvent
 	{
 		//TODO: Revert this when the model works properly.
-		/*[JsonProperty("ref")]
+		[JsonProperty("ref")]
 		public string Ref { get; set; }
 
-		[JsonProperty("before")]
+		/*[JsonProperty("before")]
 		public string Before { get; set; }
 
 		[JsonProperty("after")]

@@ -30,7 +30,7 @@ namespace KurthosWoW
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> OnRecievedGithubPushEvent([FromBody] GithubWebhookPushEvent pushEvent)
+		public async Task<IActionResult> OnRecievedGithubPushEvent([FromBody] GithubWebhookPushEvent pushEvent, [FromServices] DeployedProcessManager processManager)
 		{
 			if(!ModelState.IsValid)
 				return BadRequest();
@@ -42,13 +42,21 @@ namespace KurthosWoW
 			//TODO: Setup ASP Logging
 			try
 			{
-				
+				lock(processManager.SyncObj)
+				{
+					//We should kill before pulling and compiling.
+					if(processManager.IsRunning)
+						processManager.DeployedProcess.Kill();
 
-				//TODO: We can do some logging or maybe even send some information to a Discord bot.
-				//We just directly invoke the batch file that is responsible for handling compilation/git and such.
-				//We assume it's in the current directory and that it's named push.bat
-				ProcessStartInfo pInfo = new ProcessStartInfo("cmd.exe", $"/c {Path.Combine(Directory.GetCurrentDirectory(), "push.bat")}");
-				Process.Start(pInfo);
+					//TODO: We can do some logging or maybe even send some information to a Discord bot.
+					//We just directly invoke the batch file that is responsible for handling compilation/git and such.
+					//We assume it's in the current directory and that it's named push.bat
+					ProcessStartInfo pInfo = new ProcessStartInfo($"{Path.Combine(Directory.GetCurrentDirectory(), "publish", "KurthosWoW.Compilation.Bootstrapper.exe")}");
+
+					Process p = Process.Start(pInfo);
+					p.EnableRaisingEvents = true;
+					processManager.CompilationTaskProcess = p;
+				}
 
 				//We don't wait because github probably expects a quick OK
 				return Ok();

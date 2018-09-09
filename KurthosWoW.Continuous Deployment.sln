@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C69D878A-A37
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{78CBA3CF-28F2-464F-892A-3FB745AC735E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KurthosWoW.TestRealm.DeployementService", "src\KurthosWoW.TestRealm.DeployementService\KurthosWoW.TestRealm.DeployementService.csproj", "{858DD5B2-0362-4B61-BDFF-9D95D4EED5E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KurthosWoW.TestRealm.DeployementService", "src\KurthosWoW.TestRealm.DeployementService\KurthosWoW.TestRealm.DeployementService.csproj", "{858DD5B2-0362-4B61-BDFF-9D95D4EED5E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KurthosWoW.Compilation.Bootstrapper", "src\KurthosWoW.Compilation.Bootstrapper\KurthosWoW.Compilation.Bootstrapper.csproj", "{0873D2CD-CE34-4F7B-B9C8-7A61210AABE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,12 +23,17 @@ Global
 		{858DD5B2-0362-4B61-BDFF-9D95D4EED5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{858DD5B2-0362-4B61-BDFF-9D95D4EED5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{858DD5B2-0362-4B61-BDFF-9D95D4EED5E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0873D2CD-CE34-4F7B-B9C8-7A61210AABE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0873D2CD-CE34-4F7B-B9C8-7A61210AABE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0873D2CD-CE34-4F7B-B9C8-7A61210AABE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0873D2CD-CE34-4F7B-B9C8-7A61210AABE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{858DD5B2-0362-4B61-BDFF-9D95D4EED5E0} = {C69D878A-A37C-4DBD-8D90-8AF30074E3C0}
+		{0873D2CD-CE34-4F7B-B9C8-7A61210AABE4} = {C69D878A-A37C-4DBD-8D90-8AF30074E3C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77340858-04C1-4169-93A3-121A82FA6670}
